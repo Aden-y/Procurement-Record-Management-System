@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Word Puzzle Solution</title>
+	<link rel="stylesheet" type="text/css" href="css.css">
+	<script src="jquery.min.js"></script>
+	<script src="main.js"></script>
+</head>
+<body>
+	<nav class="nav-top">
+		<h1>Welcome To Word Puzzle Game Solver</h1>
+		<button class="btn-try">Try it for free</button>
+		<button class="btn-signup">Sign up</button>
+		<button class="btn-login">Login</button>
+
+	</nav>
+	<div class="container">
+		<form>
+			<center>
+				<div class="form-holder" style="max-width: 450px;">
+						<label><b>Enter The Leters Here</b></label><br>
+						<input type="text" id="puz" style="text-align: center;"> <br>
+						<label><b>How Many Leter Words</b></label><br>
+
+						<select id="maxlen">
+						<option value="0">..</option>
+						</select>
+
+				</div>
+			</center>
+		</form>
+		<div>
+			<center><h2>Solutions </h2>
+				<div id="solutions" style="background: #00e6ac;max-width: 450px; padding: 25px; border-top: 5px solid red;border-radius: 10px;">
+					
+				</div>
+
+			</center>
+		</div>
+	</div>
+<script src="wordPuzzleSolver.js"></script>
+<script type="text/javascript">
+	var puzleters="";
+	$("#puz").focusout(function(){
+  		puzleters=$(this).val();
+  		$("#maxlen").empty();
+  		$("#maxlen").append('<option value="0">0</option>');
+  		for(var i=0;i<puzleters.length;i++){
+  			$("#maxlen").append('<option value="'+(i+1*1)+'">'+(+i+1*1)+'</option>');
+  		}
+	});
+
+
+$(document).ready(function(){
+
+	function getData(len,puz){
+        $.ajax({
+          type:'post',
+          url:'process.php',
+          data:{gatData:1},
+          success:function(response){
+          	var res=$.parseJSON(response);
+ 				var words=res.words;
+ 				//console.log(words);
+ 			 var sol=solve(words,len,puz)
+ 				//alert(sol.length);
+ 				$("#solutions").empty();
+ 				for(var i=0;i<sol.length;i++){
+ 					$("#solutions").append('<div style="padding:15px;font-size:25px;">'+sol[i]+'</div>');
+ 				}
+
+          },
+          error: function(response){
+            console.log(response);
+          }
+         });
+	}
+
+	$("#maxlen").change(function () {
+		// body...
+		var m=parseInt($(this).val());
+		if (m!==0 && puzleters!=="") {
+
+			getData(m,puzleters);
+		}
+
+	});
+	
+			});
+</script>
+</body>
+</html>

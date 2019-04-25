@@ -1,0 +1,54 @@
+nav{
+	width: 100%;
+	background-color: #003366;
+	color: #ffffcc;
+	height: 100px;
+	text-align: center;
+	padding: 20px;
+
+}
+.container{
+	padding: 25px;
+
+}
+nav h1{
+	top: 25px;
+
+}
+input , select{
+	width: 250px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	height: 30px;
+	font-size: 18px;
+	border-radius: 10px;
+	border: none;
+
+}
+
+button{
+	margin: 6px;
+	height: 35px;
+	padding: 6px;
+	border-radius: 5px;
+	border: none;
+}
+.btn-login{
+	background: #009933;
+	color: white;
+
+}
+.btn-try{
+	background: #ff9900;
+	color: white;
+}
+.btn-signup{
+	background: #ff0066;
+	color: white;
+}
+.form-holder{
+	background :#d6d6c2;
+	padding-top: 15px;
+	border-radius: 20px;
+	color: 
+}
